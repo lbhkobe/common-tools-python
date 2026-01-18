@@ -119,10 +119,98 @@ converter = VideoToPPT(
 converter.convert()
 ```
 
+## PDF 工具集
+
+### 6. pdf/merge_pdfs.py - PDF 合并工具
+
+将多个 PDF 文件合并为一个文件，可选添加连续页码。
+
+**主要功能：**
+- 合并多个 PDF 文件
+- 可选添加连续页码（页码位于页面底部中央）
+- 自动处理页面尺寸
+- 支持任意数量的 PDF 文件
+
+**使用示例：**
+```python
+from pdf.merge_pdfs import merge_pdfs
+
+pdf_files = ["file1.pdf", "file2.pdf", "file3.pdf"]
+output_path = "merged.pdf"
+merge_pdfs(pdf_files, output_path, add_numbers=True)
+```
+
+### 7. pdf/pdf_edit_gui.py - PDF 编辑器 GUI
+
+图形化界面的 PDF 编辑工具，提供直观的 PDF 操作界面。
+
+**主要功能：**
+- 打开和预览 PDF 文件
+- 页面导航（上一页/下一页）
+- 删除指定页面
+- 旋转页面（90度）
+- 文本查找和替换
+- 拆分 PDF（按页码范围、提取指定页面、每隔 N 页）
+- 保存编辑后的 PDF
+- 显示 PDF 元数据和属性
+
+**使用示例：**
+```bash
+python pdf/pdf_edit_gui.py
+```
+
+### 8. pdf/pdf_split.py - PDF 拆分工具
+
+将 PDF 文件按不同方式拆分为多个文件。
+
+**主要功能：**
+- 按页码范围拆分（如：1-10, 11-20）
+- 提取指定页码到单独文件
+- 每隔 N 页拆分一个文件
+- 自动创建输出目录
+- 详细的处理日志
+
+**使用示例：**
+```python
+from pdf.pdf_split import split_pdf_by_page_range, split_pdf_by_page_numbers, split_pdf_every_n_pages
+
+# 按页码范围拆分
+split_pdf_by_page_range("input.pdf", "output_dir", [(1, 10), (11, 20)])
+
+# 提取指定页码
+split_pdf_by_page_numbers("input.pdf", "output_dir", [1, 3, 5, 7])
+
+# 每隔 N 页拆分
+split_pdf_every_n_pages("input.pdf", "output_dir", pages_per_file=5)
+```
+
+### 9. pdf/pdf_table_extractor.py - PDF 表格提取工具
+
+从 PDF 文件中提取表格数据并导出到 Excel。
+
+**主要功能：**
+- 提取 PDF 中的所有表格
+- 将表格合并到单个 Excel 文件
+- 支持固定表头（17列银行流水格式）
+- 自动处理表格列数不一致的情况
+- 支持批量处理多个 PDF 文件
+- 提取所有文本内容到文本文件
+
+**使用示例：**
+```python
+from pdf.pdf_table_extractor import extract_tables_from_pdf, batch_extract_tables
+
+# 提取单个 PDF 的表格
+extract_tables_from_pdf("input.pdf", "output_dir")
+
+# 批量提取目录下所有 PDF 的表格
+batch_extract_tables("pdf_directory", "output_dir")
+```
+
 ## 依赖安装
 
 ```bash
-pip install python-pptx pillow opencv-python playwright requests
+pip install python-pptx pillow opencv-python playwright requests pypdf reportlab pdfplumber pandas openpyxl PyMuPDF
 playwright install chromium
 ```
 
