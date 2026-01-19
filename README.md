@@ -1,6 +1,7 @@
 # Common Tools Python
 
 这是一个Python工具集，包含多个实用的自动化和转换工具。
+使用了playwright作为浏览器自动化工具，使用前需playwirght install chromium
 
 ## 工具列表
 
